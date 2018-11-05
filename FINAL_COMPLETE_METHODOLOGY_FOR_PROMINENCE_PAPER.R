@@ -1,5 +1,5 @@
-############################################################
-## Code and methodology for Hansard prominence paper
+##############################################################
+## Code and methodology for Hansard Prominence paper
 ##                             
 ## This script has four main parts:
 ## 1) scraping data from Hansard
@@ -7,8 +7,8 @@
 ## 3) machine learning to classify the prominence labels
 ## 4) generating analysis / results
 ##
-##   Tim Graham | ANU | 9/3/2017                  
-############################################################
+## Timothy Graham | Australian National University | 9/3/2017                  
+##############################################################
 
 library(rvest)
 require(magrittr)
