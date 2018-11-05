@@ -867,7 +867,7 @@ toDel <- which(colnames(FINAL_FIXED_HANSARD_DATA_DF)=="Text")
 FINAL_FIXED_HANSARD_DATA_DF <- FINAL_FIXED_HANSARD_DATA_DF[,-toDel]
 
 # WRITE TO FILE
-write.csv(FINAL_FIXED_HANSARD_DATA_DF,"./NEW_FIXED_DATA_MARCH_2016/FINAL_COMPLETE_HANSARD_DATASET_INTEREST_GROUP_RAW_MENTIONS.csv",row.names = F,fileEncoding = "UTF-8")
+write.csv(FINAL_FIXED_HANSARD_DATA_DF,"FINAL_COMPLETE_HANSARD_DATASET_INTEREST_GROUP_RAW_MENTIONS.csv",row.names = F,fileEncoding = "UTF-8")
 
 ########################################################################################
 
@@ -983,7 +983,7 @@ FINAL_FIXED_HANSARD_DATA_DF$Text <- as.character(FINAL_FIXED_HANSARD_DATA_DF$Tex
 FINAL_FIXED_HANSARD_DATA_DF$TextParagraph <- as.character(FINAL_FIXED_HANSARD_DATA_DF$TextParagraph)
 
 ## write the cleaned file to disk...
-write.csv(FINAL_FIXED_HANSARD_DATA_DF,"./NEW_FIXED_DATA_MARCH_2016/FINAL_FIXED_HANSARD_DATA_DF.csv",row.names = F,fileEncoding = "UTF-8")
+write.csv(FINAL_FIXED_HANSARD_DATA_DF,"FINAL_FIXED_HANSARD_DATA_DF.csv",row.names = F,fileEncoding = "UTF-8")
 
 #############################################################################################################################################
 
@@ -1118,12 +1118,9 @@ for (i in 1:10) {
 # get the average f-score
 mean(average_fscore_on_target_var)
 
-## what this gives us is an idea of how the model performs on out of sample data.
-## we report this in the paper.
-## BUT - then we want to create a new model using all of our data (full sample),
-## because we want to use as much data as possible, now we know how the model performs (i.e. it is viable for application)
+# now that we have validated and attained the performance results of the model, we can report that in the paper, then move on the next task, which is to train a model on all available coded labels and then do the predictions on the rest of the Hansard data. For this we need to load the unlabelled data.  
 
-data_UNCODED_cleaned <- read.csv("./NEW_FIXED_DATA_MARCH_2016/FINAL_FIXED_HANSARD_DATA_DF.csv", stringsAsFactors = F)
+data_UNCODED_cleaned <- read.csv("FINAL_FIXED_HANSARD_DATA_DF.csv", stringsAsFactors = F)
 data_UNCODED_cleaned$Prominence <- NA
 
 data$TextParagraph <- gsub("\\*","",data$TextParagraph)
@@ -1229,7 +1226,7 @@ toRem <- unique(data_RAW_MENTIONS_AND_CODED_AUTOMATICALLY_cleaned$UniqID)[na_mat
 
 data_RAW_MENTIONS_AND_CODED_AUTOMATICALLY_cleaned <- subset(data_RAW_MENTIONS_AND_CODED_AUTOMATICALLY_cleaned, UniqID %in% groups_to_include)
 
-write.csv(data_RAW_MENTIONS_AND_CODED_AUTOMATICALLY_cleaned,"./NEW_FIXED_DATA_MARCH_2016/FINAL_RAW_MENTIONS_AND_AUTOMATICALLY_CODED_DATA_HANSARD.csv",row.names = F)
+write.csv(data_RAW_MENTIONS_AND_CODED_AUTOMATICALLY_cleaned,"FINAL_RAW_MENTIONS_AND_AUTOMATICALLY_CODED_DATA_HANSARD.csv",row.names = F)
 
 #############################################################################################################################################
 
